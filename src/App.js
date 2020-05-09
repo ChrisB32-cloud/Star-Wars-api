@@ -5,44 +5,55 @@ import SearchBox from './SearchBox';
 import './App.css';
 
 class App extends Component {
-    constructor() {
-        super()
-        this.state = {
-            starPeople: [],
-            searchfield: ''
-        }
+  constructor() {
+    super();
+    this.state = {
+      starPeople: [],
+      searchfield: ''
+    };
+  }
 
-    }
-
-    componentDidMount() {
-        fetch('https://swapi.co/api/people/?format=json')
-        .then(resp=> {
-            return resp.json;
+  componentDidMount() {
+    for (let i = 1; i <= 83; i++) {
+      fetch(`https://swapi.dev/api/people/${i}/`)
+        .then(resp => {
+          return resp.json();
         })
-        .then(people => {
-            this.setState({ starPeople: people})
+        .then(starPeople => {
+          console.log(starPeople);
+          this.setState({ people: starPeople });
         });
-        
     }
 
-    onSearchChange = (event) => {
-        this.setState({searchfield: event.target.value})
-    }
+    // for (let i = 1; i <= 83; i++) {
+    //   async function getStar() {
+    //     const resp = await fetch(`https://swapi.dev/api/people/${i}/`);
+    //     const respData = await resp.json();
+    //     console.log(respData);
+    //     return respData;
+    //   }
+    //   getStar();
+    // }
+  }
+
+  onSearchChange = event => {
+    this.setState({ searchfield: event.target.value });
+  };
 
   render() {
     const filteredStar = this.state.starPeople.filter(starPerson => {
-        return starPerson.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
-    })
-    return(
-        <div className='tc'>
-            <h1 className='f1'>Star Wars Universe</h1>
-            <SearchBox searchChange={this.onSearchChange}/>
-            <CardList starPeople={filteredStar}/>
-        </div>
+      return starPerson
+        .toLowerCase()
+        .includes(this.state.searchfield.toLowerCase());
+    });
+    return (
+      <div className="tc">
+        <h1 className="f1">Star Wars Universe</h1>
+        <SearchBox searchChange={this.onSearchChange} />
+        <CardList starPeople={filteredStar} />
+      </div>
     );
-   
   }
 }
-  
 
 export default App;
