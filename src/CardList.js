@@ -4,15 +4,15 @@ import Card from './Card';
 const cardList = ({ starPeople }) => {
   return (
     <div>
-      {starPeople.map((starPerson, i) => {
+      {starPeople.map((person, i) => {
         return (
           <Card
             key={i}
-            name={starPerson[i].name}
-            height={starPerson[i].height}
-            mass={starPerson[i].mass}
-            gender={starPerson[i].gender}
-            birth_year={starPerson[i].birth_year}
+            name={person.name}
+            height={person.height}
+            mass={person.mass}
+            gender={person.gender}
+            birth_year={person.birth_year}
           />
         );
       })}
