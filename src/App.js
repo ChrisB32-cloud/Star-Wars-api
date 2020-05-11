@@ -14,16 +14,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    for (let i = 1; i <= 83; i++) {
-      fetch(`https://swapi.dev/api/people/${i}/`)
-        .then(resp => {
-          return resp.json();
-        })
-        .then(starPeople => {
-          console.log(starPeople);
-          this.setState({ people: starPeople });
-        });
-    }
+    // for (let i = 1; i <= 83; i++) {
+    fetch(`https://swapi.dev/api/people/`)
+      .then(resp => {
+        return resp.json();
+      })
+      .then(starPeople => {
+        console.log(starPeople);
+
+        this.setState({ people: starPeople });
+      });
+    // }
 
     // for (let i = 1; i <= 83; i++) {
     //   async function getStar() {
@@ -46,6 +47,7 @@ class App extends Component {
         .toLowerCase()
         .includes(this.state.searchfield.toLowerCase());
     });
+    console.log(filteredStar);
     return (
       <div className="tc">
         <h1 className="f1">Star Wars Universe</h1>
