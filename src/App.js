@@ -22,6 +22,7 @@ class App extends Component {
           // console.log('page: ', i, result.results);
           // return this.setState({ starPeople: });
           // console.log(typeof this.starPeople);
+          // for loop
           for (let j = 0; j < result.results.length; j++) {
             // console.log(_starPeople);
             console.log(result.results[j]);
