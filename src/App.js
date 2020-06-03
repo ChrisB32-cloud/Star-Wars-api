@@ -72,6 +72,7 @@ class App extends Component {
           );
         });
     };
+    // have to find a way to collect it all at once
 
     let makeCall = async () => {
       await fetchStarPeople(i).finally(_ => {
